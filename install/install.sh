@@ -9,6 +9,7 @@ DOMAIN="${DOMAIN:-}"
 ADMIN_EMAIL="${ADMIN_EMAIL:-}"
 ADMIN_NAME="${ADMIN_NAME:-Xcat}"
 ADMIN_PASSWORD="${ADMIN_PASSWORD:-}"
+ADMIN_RESET="${ADMIN_RESET:-0}"
 PUBLIC_URL="${PUBLIC_URL:-}"
 NODE_MAJOR="${NODE_MAJOR:-22}"
 
@@ -149,6 +150,7 @@ create_initial_admin() {
     ADMIN_EMAIL="$ADMIN_EMAIL" \
     ADMIN_NAME="$ADMIN_NAME" \
     ADMIN_PASSWORD="$ADMIN_PASSWORD" \
+    ADMIN_RESET="$ADMIN_RESET" \
     node --input-type=module <<'NODE'
 import fs from 'fs/promises';
 import path from 'path';
@@ -159,6 +161,7 @@ const usersFile = path.join(root, 'data', 'users.json');
 const email = String(process.env.ADMIN_EMAIL || '').trim().toLowerCase();
 const name = String(process.env.ADMIN_NAME || 'Xcat').trim() || 'Xcat';
 const password = String(process.env.ADMIN_PASSWORD || '');
+const resetExisting = process.env.ADMIN_RESET === '1';
 
 if (!email || !password) {
   throw new Error('Email/password do admin em falta');
@@ -172,7 +175,15 @@ try {
 }
 
 const existing = users.find((user) => String(user.email || '').toLowerCase() === email);
-if (!existing) {
+if (existing && resetExisting) {
+  existing.name = name;
+  existing.passwordHash = await bcrypt.hash(password, 12);
+  existing.role = 'admin';
+  existing.status = 'approved';
+  existing.updatedAt = new Date().toISOString();
+  await fs.mkdir(path.dirname(usersFile), { recursive: true });
+  await fs.writeFile(usersFile, JSON.stringify(users, null, 2));
+} else if (!existing) {
   users.push({
     id: `admin-${Date.now()}`,
     name,
