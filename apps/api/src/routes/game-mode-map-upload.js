@@ -6,7 +6,7 @@ import multer from 'multer';
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 1024 * 1024 * 500 } });
 
-const SERVERS_ROOT = '/opt/gameforge/servers';
+const SERVERS_ROOT = '/opt/xcat-panel/servers';
 const ALLOWED_EXT = new Set(['.vpk', '.bsp', '.nav']);
 
 function safeFileName(name) {

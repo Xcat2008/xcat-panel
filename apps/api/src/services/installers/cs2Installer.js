@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const CS2_LIBRARY_PATH = path.join(ROOT, 'library', 'games', 'cs2', 'steamcmd', 'latest');
 
 export async function installCS2Server(server, installConfig = {}) {

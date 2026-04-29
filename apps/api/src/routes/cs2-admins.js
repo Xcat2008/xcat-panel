@@ -4,7 +4,7 @@ import path from 'path';
 
 const router = express.Router();
 
-const SERVERS_ROOT = '/opt/gameforge/servers';
+const SERVERS_ROOT = '/opt/xcat-panel/servers';
 
 function getAdminsPath(serverId) {
   return path.join(

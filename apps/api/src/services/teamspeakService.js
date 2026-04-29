@@ -3,7 +3,7 @@ import path from 'path';
 import net from 'net';
 import { getServer } from './serverService.js';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 
 function unescapeValue(value = '') {
   return String(value)

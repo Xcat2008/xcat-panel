@@ -4,7 +4,7 @@ import path from 'path';
 
 const router = express.Router();
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 
 function getLogPath(serverId) {
   return path.join(ROOT, 'servers', serverId, 'files', 'server.log');

@@ -5,8 +5,8 @@ import { promisify } from 'util';
 
 const execFileAsync = promisify(execFile);
 
-const SERVERS_ROOT = '/opt/gameforge/servers';
-const PLUGIN_LIBRARY_ROOT = '/opt/gameforge/library/plugins';
+const SERVERS_ROOT = '/opt/xcat-panel/servers';
+const PLUGIN_LIBRARY_ROOT = '/opt/xcat-panel/library/plugins';
 
 const BUILTIN_PLUGINS = [
   {

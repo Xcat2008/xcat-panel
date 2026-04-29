@@ -12,7 +12,7 @@ import { startServerProcess, stopServerProcess, isServerProcessRunning } from '.
 import { ensureCs2OverlayMounted } from './cs2OverlayService.js';
 import { getStorageRoot, isPathInsideStorageRoots } from './storageService.js';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const DATA_DIR = path.join(ROOT, 'data');
 const SERVERS_DIR = path.join(ROOT, 'servers');
 const LIBRARY_DIR = path.join(ROOT, 'library');
@@ -1117,7 +1117,7 @@ export async function deleteServer(arg1, arg2 = null) {
   const fs = fsMod.default;
   const path = pathMod.default;
 
-  const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+  const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
   const DATA_FILE = path.join(ROOT, 'data', 'servers.json');
   const SERVERS_ROOT = path.join(ROOT, 'servers');
 

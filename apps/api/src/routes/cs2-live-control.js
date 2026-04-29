@@ -7,7 +7,7 @@ import { promisify } from 'util';
 const execFileAsync = promisify(execFile);
 const router = express.Router();
 
-const SERVERS_ROOT = '/opt/gameforge/servers';
+const SERVERS_ROOT = '/opt/xcat-panel/servers';
 
 function serverRoot(serverId) {
   return path.join(SERVERS_ROOT, serverId);

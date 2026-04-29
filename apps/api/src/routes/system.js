@@ -4,8 +4,8 @@ import { exec } from 'child_process';
 
 const router = express.Router();
 
-const LOG_FILE = '/opt/gameforge/logs/cs2-update.log';
-const MANIFEST = '/opt/gameforge/library/games/cs2/steamcmd/latest/steamapps/appmanifest_730.acf';
+const LOG_FILE = '/opt/xcat-panel/logs/cs2-update.log';
+const MANIFEST = '/opt/xcat-panel/library/games/cs2/steamcmd/latest/steamapps/appmanifest_730.acf';
 
 // helper exec
 function execAsync(cmd) {
@@ -53,7 +53,7 @@ router.get('/system/cs2-update-status', async (req, res) => {
 // RUN UPDATE MANUAL
 router.post('/system/cs2-update-run', async (req, res) => {
   try {
-    const result = await execAsync('/opt/gameforge/scripts/auto-update-cs2-enterprise.sh');
+    const result = await execAsync('/opt/xcat-panel/scripts/auto-update-cs2-enterprise.sh');
 
     return res.json({
       ok: true,

@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const CATALOG_DIR = path.join(ROOT, 'catalog');
 
 export async function getCatalog() {

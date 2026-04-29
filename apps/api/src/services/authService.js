@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const USERS_FILE = path.join(ROOT, 'data', 'users.json');
 const JWT_SECRET = process.env.GAMEFORGE_JWT_SECRET || 'gameforge-dev-secret-change-me';
 

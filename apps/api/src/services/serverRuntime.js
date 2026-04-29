@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { spawn, execFile } from 'child_process';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const DATA_FILE = path.join(ROOT, 'data', 'servers.json');
 
 function exec(cmd) {

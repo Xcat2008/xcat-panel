@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
 import { spawn } from 'child_process';
 
-const SCRIPT = '/opt/gameforge/scripts/auto-update-cs2-enterprise.sh';
-const LOG_FILE = '/opt/gameforge/logs/cs2-update.log';
+const SCRIPT = '/opt/xcat-panel/scripts/auto-update-cs2-enterprise.sh';
+const LOG_FILE = '/opt/xcat-panel/logs/cs2-update.log';
 
 export async function startCs2Update(user) {
   if (user?.role !== 'admin') {

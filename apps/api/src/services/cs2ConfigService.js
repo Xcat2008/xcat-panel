@@ -2,8 +2,8 @@ import fs from 'fs/promises';
 import path from 'path';
 import { readJson, writeJson } from '../utils/jsonStore.js';
 
-const CONFIG_DB_PATH = '/opt/gameforge/apps/api/data/cs2-configs.json';
-const SERVERS_ROOT = '/opt/gameforge/servers';
+const CONFIG_DB_PATH = '/opt/xcat-panel/apps/api/data/cs2-configs.json';
+const SERVERS_ROOT = '/opt/xcat-panel/servers';
 
 export const DEFAULT_CS2_CONFIG = {
   hostname: 'GameForge CS2 Server',

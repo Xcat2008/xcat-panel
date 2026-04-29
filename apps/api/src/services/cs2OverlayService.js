@@ -4,7 +4,7 @@ import { promisify } from 'util';
 
 const execFileAsync = promisify(execFile);
 
-const MOUNT_SCRIPT = '/opt/gameforge/apps/api/scripts/mount-cs2-overlay.sh';
+const MOUNT_SCRIPT = '/opt/xcat-panel/apps/api/scripts/mount-cs2-overlay.sh';
 
 export async function ensureCs2OverlayMounted(server) {
   if (!server || server.game !== 'cs2') {

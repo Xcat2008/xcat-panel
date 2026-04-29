@@ -50,7 +50,7 @@ ask_defaults() {
 install_packages() {
   log "A instalar dependencias base"
   apt-get update
-  apt-get install -y ca-certificates curl gnupg nginx certbot python3-certbot-nginx jq unzip tar xz-utils rsync software-properties-common
+  apt-get install -y ca-certificates curl gnupg nginx certbot python3-certbot-nginx jq unzip tar xz-utils bzip2 rsync software-properties-common
 
   if ! command -v node >/dev/null 2>&1 || ! node -v | grep -q "v${NODE_MAJOR}"; then
     curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | bash -

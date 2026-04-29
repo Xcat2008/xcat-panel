@@ -5,7 +5,7 @@ import { promisify } from 'util';
 
 const execFileAsync = promisify(execFile);
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const DATA_DIR = path.join(ROOT, 'data');
 const STORAGE_FILE = path.join(DATA_DIR, 'storage-roots.json');
 const DEFAULT_STORAGE = {
@@ -29,10 +29,15 @@ async function writeJson(filePath, data) {
 }
 
 function normalizeRoot(root) {
+  const rawPath = String(root.path || DEFAULT_STORAGE.path);
+  const migratedPath = rawPath.startsWith('/opt/gameforge')
+    ? rawPath.replace('/opt/gameforge', ROOT)
+    : rawPath;
+
   return {
     id: String(root.id || '').trim(),
     label: String(root.label || root.id || 'Storage').trim(),
-    path: path.resolve(String(root.path || DEFAULT_STORAGE.path)),
+    path: path.resolve(migratedPath),
     default: Boolean(root.default)
   };
 }
@@ -60,6 +65,10 @@ export async function listStorageRoots({ includeStats = false } = {}) {
 
   if (!normalized.some((root) => root.default)) {
     normalized[0].default = true;
+  }
+
+  if (JSON.stringify(roots) !== JSON.stringify(normalized)) {
+    await writeJson(STORAGE_FILE, normalized);
   }
 
   for (const root of normalized) {

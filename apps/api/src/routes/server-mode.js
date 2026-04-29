@@ -4,7 +4,7 @@ import { execSync } from 'child_process';
 const router = express.Router();
 
 function writeCommand(serverId, command) {
-  const pipe = `/opt/gameforge/servers/${serverId}/files/console.pipe`;
+  const pipe = `/opt/xcat-panel/servers/${serverId}/files/console.pipe`;
   execSync(`printf "%s\n" "${command}" > "${pipe}"`);
 }
 

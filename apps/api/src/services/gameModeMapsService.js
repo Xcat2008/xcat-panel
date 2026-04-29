@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 
-const SERVERS_ROOT = '/opt/gameforge/servers';
+const SERVERS_ROOT = '/opt/xcat-panel/servers';
 
 const DEFAULT_MODE_SETTINGS = {
   competitive: {

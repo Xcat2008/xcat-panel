@@ -5,7 +5,7 @@ import crypto from 'crypto';
 import { spawn } from 'child_process';
 import { getServer } from '../services/serverService.js';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const BACKUPS_DIR = path.join(ROOT, 'backups');
 
 const router = Router();

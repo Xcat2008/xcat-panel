@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { spawn } from 'child_process';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const LIBRARY_DIR = path.join(ROOT, 'library');
 const GAMES_DIR = path.join(LIBRARY_DIR, 'games');
 const ARCHIVES_DIR = path.join(LIBRARY_DIR, 'archives');

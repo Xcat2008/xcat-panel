@@ -7,7 +7,7 @@ import { listPlugins } from './pluginService.js';
 import { getModeMaps } from './gameModeMapsService.js';
 
 const execFileAsync = promisify(execFile);
-const SERVERS_ROOT = '/opt/gameforge/servers';
+const SERVERS_ROOT = '/opt/xcat-panel/servers';
 
 function serverRoot(serverId) {
   return path.join(SERVERS_ROOT, serverId);

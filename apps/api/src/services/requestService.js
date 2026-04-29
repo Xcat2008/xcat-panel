@@ -5,7 +5,7 @@ import { getCatalog } from './catalogService.js';
 import { installServer } from './serverService.js';
 import { addActivity } from './activityService.js';
 
-const ROOT = process.env.GAMEFORGE_ROOT || '/opt/gameforge';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const REQUESTS_FILE = path.join(ROOT, 'data', 'server-requests.json');
 
 async function readJson(filePath, fallback) {
