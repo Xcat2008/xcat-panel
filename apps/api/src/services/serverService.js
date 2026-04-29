@@ -1213,8 +1213,17 @@ export async function reinstallServer(id, user) {
   server.reinstallCount = Number(server.reinstallCount || 0) + 1;
   server.updatedAt = now.toISOString();
 
-  await fs.mkdir(path.join(server.path, 'logs'), { recursive: true });
-  await createProvisionedFiles(server, server.installConfig || {});
+  try {
+    await stopServerProcess(server);
+  } catch {}
+
+  try {
+    await fs.mkdir(path.join(server.path, 'logs'), { recursive: true });
+    await createProvisionedFiles(server, server.installConfig || {});
+  } catch (err) {
+    await appendLog(server.path, `Falha ao reinstalar: ${err.message}`);
+    throw new Error(`Erro ao reinstalar servidor: ${err.message}`);
+  }
 
   await writeJson(path.join(server.path, 'config.json'), server);
   await writeJson(path.join(server.path, 'status.json'), {
