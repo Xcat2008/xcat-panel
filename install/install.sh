@@ -199,10 +199,20 @@ configure_pm2() {
 
 configure_nginx() {
   log "A configurar Nginx"
+  local server_names
+  server_names="${DOMAIN}"
+  if [ -n "${PUBLIC_URL}" ]; then
+    local public_host
+    public_host="$(printf '%s' "$PUBLIC_URL" | sed -E 's#^https?://##; s#/.*$##; s#:.*$##')"
+    if [ -n "$public_host" ] && [ "$public_host" != "$DOMAIN" ]; then
+      server_names="${server_names} ${public_host}"
+    fi
+  fi
+
   cat > "/etc/nginx/sites-available/${APP_NAME}.conf" <<EOF
 server {
-  listen 80;
-  server_name ${DOMAIN};
+  listen 80 default_server;
+  server_name ${server_names} _;
 
   root ${APP_DIR}/apps/web/dist;
   index index.html;
@@ -223,11 +233,14 @@ server {
 EOF
 
   ln -sf "/etc/nginx/sites-available/${APP_NAME}.conf" "/etc/nginx/sites-enabled/${APP_NAME}.conf"
+  rm -f /etc/nginx/sites-enabled/default
   nginx -t
   systemctl reload nginx
 
-  if [ -n "$DOMAIN" ] && [ -n "$ADMIN_EMAIL" ]; then
+  if [ -n "$DOMAIN" ] && [ -n "$ADMIN_EMAIL" ] && ! printf '%s' "$DOMAIN" | grep -Eq '(^[0-9.]+$|\\.local$|localhost)'; then
     certbot --nginx -d "$DOMAIN" --non-interactive --agree-tos -m "$ADMIN_EMAIL" || log "HTTPS nao configurado automaticamente. Verifica DNS/firewall."
+  else
+    log "HTTPS ignorado neste teste local. Usa um dominio real para Let's Encrypt."
   fi
 }
 
