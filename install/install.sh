@@ -202,7 +202,7 @@ NODE
 
 configure_pm2() {
   log "A configurar servico da API"
-  sudo -u xcatpanel bash -lc "cd '$APP_DIR/apps/api' && PM2_HOME=/home/xcatpanel/.pm2 pm2 start src/main.js --name xcat-panel-api --update-env || PM2_HOME=/home/xcatpanel/.pm2 pm2 restart xcat-panel-api --update-env"
+  sudo -u xcatpanel bash -lc "cd '$APP_DIR/apps/api' && GAMEFORGE_ROOT='$APP_DIR' GAMEFORGE_PUBLIC_URL='$PUBLIC_URL' GAMEFORGE_SERVERS_DIR='$SERVER_DIR' PM2_HOME=/home/xcatpanel/.pm2 pm2 start src/main.js --name xcat-panel-api --update-env || GAMEFORGE_ROOT='$APP_DIR' GAMEFORGE_PUBLIC_URL='$PUBLIC_URL' GAMEFORGE_SERVERS_DIR='$SERVER_DIR' PM2_HOME=/home/xcatpanel/.pm2 pm2 restart xcat-panel-api --update-env"
   sudo -u xcatpanel bash -lc "PM2_HOME=/home/xcatpanel/.pm2 pm2 save"
   env PATH="$PATH:/usr/bin" pm2 startup systemd -u xcatpanel --hp /home/xcatpanel >/tmp/xcat-pm2-startup.txt || true
   bash /tmp/xcat-pm2-startup.txt 2>/dev/null || true
