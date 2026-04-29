@@ -142,6 +142,8 @@ create_initial_admin() {
   mkdir -p "$DATA_DIR"
   chown -R xcatpanel:xcatpanel "$DATA_DIR"
 
+  cd "$APP_DIR/apps/api"
+
   sudo -u xcatpanel env \
     GAMEFORGE_ROOT="$APP_DIR" \
     ADMIN_EMAIL="$ADMIN_EMAIL" \
