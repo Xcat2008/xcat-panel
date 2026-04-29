@@ -979,7 +979,12 @@ export async function installServer(payload = {}, user) {
     });
   }
 
-  await createProvisionedFiles(server, installConfig);
+  try {
+    await createProvisionedFiles(server, installConfig);
+  } catch (err) {
+    await appendLog(serverPath, `Falha ao provisionar ${server.name}: ${err.message}`);
+    throw new Error(`Erro ao criar servidor ${template.name}: ${err.message}`);
+  }
 
   await writeJson(path.join(serverPath, 'config.json'), server);
   await writeJson(path.join(serverPath, 'status.json'), {

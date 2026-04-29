@@ -289,7 +289,7 @@ function App() {
     try {
       const owner = users.find((item) => item.id === ownerId);
       const { storageRootId, ...cleanConfig } = config || {};
-      await api(user?.role === 'admin' ? '/servers' : '/requests', {
+      const result = await api(user?.role === 'admin' ? '/servers' : '/requests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -299,6 +299,10 @@ function App() {
           ...(owner ? { ownerId: owner.id, ownerName: owner.name, ownerEmail: owner.email } : {})
         })
       });
+
+      if (!result.ok) {
+        throw new Error(result.error || 'Erro ao criar servidor');
+      }
 
       setSelectedGame(null);
       await load();
