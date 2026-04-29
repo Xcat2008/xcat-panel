@@ -1,0 +1,48 @@
+node_modules/
+dist/
+.env
+*.log
+*.pid
+*.tgz
+*.zip
+
+# Exportacoes e scratch local do Codex
+remote-api/
+remote-api-full-*/
+remote-web/
+catalog-new/
+catalog-voice/
+plugin-library/
+known_hosts_tmp
+*.bak*
+test_*.mjs
+fix_*.py
+*_tmp
+
+# Scripts soltos de manutencao usados durante desenvolvimento
+/apply_all_cs2_configs.mjs
+/check_sinus_urls.sh
+/cleanup_deleted_cs2_config.mjs
+/cs2-live-control.js
+/cs2ConfigService.js
+/finish_sinusbot_runtime.sh
+/install_sinusbot_runtime.sh
+/migrate_cs2_ports.mjs
+/nginx_https_only.py
+/patch_nginx_sinusbot.sh
+/restart_ts_detached.sh
+/serverProcessService.js
+/serverService.js
+/sinusbot_start_current.sh
+/storage-roots.default.json
+
+# Dados reais/backup de uma maquina existente
+apps/api/data/*.json
+!apps/api/data/.gitkeep
+apps/api/src.backup-*/
+
+# Sistema/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

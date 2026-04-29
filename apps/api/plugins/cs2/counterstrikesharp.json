@@ -1,0 +1,12 @@
+{
+  "id": "counterstrikesharp",
+  "name": "CounterStrikeSharp",
+  "description": "Plugin base para CS2 (necessário para outros plugins)",
+  "version": "latest",
+  "install": {
+    "type": "zip",
+    "url": "https://github.com/roflmuffin/CounterStrikeSharp/releases/latest/download/CounterStrikeSharp.zip",
+    "extract_to": "game/csgo"
+  },
+  "required": true
+}

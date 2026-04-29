@@ -1,0 +1,36 @@
+{
+  "id": "satisfactory",
+  "name": "Satisfactory",
+  "type": "game",
+  "category": "Automation",
+  "image": "/assets/catalog/satisfactory.webp",
+  "installer": "steamcmd",
+  "steam": {
+    "appId": "1690800",
+    "anonymous": true
+  },
+  "resources": {
+    "ramMb": 8192,
+    "diskMb": 20000,
+    "cpuLimit": 200
+  },
+  "ports": [
+    { "name": "Game", "default": 7777, "protocol": "udp" },
+    { "name": "Beacon", "default": 15000, "protocol": "udp" },
+    { "name": "Query", "default": 15777, "protocol": "udp" }
+  ],
+  "configSchema": [
+    { "key": "serverName", "label": "Nome do servidor", "type": "text", "default": "Satisfactory Factory" },
+    { "key": "port", "label": "Porta principal", "type": "number", "default": 7777 },
+    { "key": "maxPlayers", "label": "Slots", "type": "number", "default": 4 },
+    { "key": "password", "label": "Password", "type": "password", "default": "" }
+  ],
+  "commands": {
+    "install": "install.sh",
+    "start": "start.sh",
+    "stop": "stop.sh",
+    "update": "update.sh",
+    "health": "health.sh"
+  }
+}
+
