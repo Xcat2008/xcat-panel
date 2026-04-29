@@ -13,8 +13,10 @@ curl -fsSL https://raw.githubusercontent.com/Xcat2008/xcat-panel/main/install/bo
 Para testar com valores ja definidos:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Xcat2008/xcat-panel/main/install/bootstrap.sh | sudo DOMAIN=panel.exemplo.pt ADMIN_EMAIL=admin@exemplo.pt ADMIN_PASSWORD='MudaEstaPassword123' bash
+curl -fsSL https://raw.githubusercontent.com/Xcat2008/xcat-panel/main/install/bootstrap.sh | sudo env DOMAIN=panel.exemplo.pt ADMIN_EMAIL=admin@exemplo.pt ADMIN_PASSWORD='MudaEstaPassword123' bash
 ```
+
+Nota: este comando so funciona diretamente se o repositorio estiver publico. Se estiver privado, o GitHub devolve 404 no `raw.githubusercontent.com`.
 
 ## Variaveis aceites
 
