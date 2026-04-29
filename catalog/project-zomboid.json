@@ -1,0 +1,27 @@
+{
+  "id": "project-zomboid",
+  "name": "Project Zomboid",
+  "category": "Survival",
+  "icon": "🧟",
+  "description": "Servidor dedicado Project Zomboid via SteamCMD, mundo persistente e RCON configuravel.",
+  "installer": "steamcmd-project-zomboid",
+  "defaultResources": {
+    "ramMb": 4096,
+    "cpuLimit": 150,
+    "diskMb": 12000
+  },
+  "ports": [
+    { "name": "Game", "port": 16261, "protocol": "udp" },
+    { "name": "Steam", "port": 16262, "protocol": "udp" },
+    { "name": "RCON", "port": 27015, "protocol": "tcp" }
+  ],
+  "schema": [
+    { "key": "serverName", "label": "Nome do servidor", "type": "text", "default": "Project Zomboid Node", "required": true },
+    { "key": "maxPlayers", "label": "Slots", "type": "number", "default": 16, "min": 2, "max": 100 },
+    { "key": "port", "label": "Porta jogo", "type": "number", "default": 16261, "min": 1024, "max": 65535 },
+    { "key": "rconPort", "label": "Porta RCON", "type": "number", "default": 27015, "min": 1024, "max": 65535 },
+    { "key": "adminPassword", "label": "Password admin", "type": "password", "default": "", "required": false },
+    { "key": "ramMb", "label": "RAM MB", "type": "number", "default": 4096, "min": 2048, "max": 32768 }
+  ],
+  "status": "available"
+}

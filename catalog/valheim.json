@@ -1,0 +1,60 @@
+{
+  "id": "valheim",
+  "name": "Valheim",
+  "category": "Survival",
+  "icon": "🛡️",
+  "description": "Servidor dedicado Valheim via SteamCMD, com mundo, password, portas e arranque automatico.",
+  "installer": "steamcmd-valheim",
+  "defaultResources": {
+    "ramMb": 4096,
+    "cpuLimit": 150,
+    "diskMb": 12000
+  },
+  "ports": [
+    {
+      "name": "Game",
+      "port": 2456,
+      "protocol": "udp"
+    }
+  ],
+  "schema": [
+    {
+      "key": "serverName",
+      "label": "Nome do servidor",
+      "type": "text",
+      "default": "Valheim Survival Node",
+      "required": true
+    },
+    {
+      "key": "worldName",
+      "label": "Mundo",
+      "type": "text",
+      "default": "Dedicated",
+      "required": true
+    },
+    {
+      "key": "serverPassword",
+      "label": "Password",
+      "type": "password",
+      "default": "change-me",
+      "required": true
+    },
+    {
+      "key": "port",
+      "label": "Porta base",
+      "type": "number",
+      "default": 2456,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "ramMb",
+      "label": "RAM MB",
+      "type": "number",
+      "default": 4096,
+      "min": 2048,
+      "max": 32768
+    }
+  ],
+  "status": "available"
+}

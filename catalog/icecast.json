@@ -1,0 +1,82 @@
+{
+  "id": "icecast",
+  "name": "Icecast Audio",
+  "category": "Audio",
+  "icon": "📡",
+  "description": "Servidor de streaming áudio para rádio online, eventos, DJ sets e transmissões privadas.",
+  "installer": "audio-icecast",
+  "defaultResources": {
+    "ramMb": 512,
+    "cpuLimit": 50,
+    "diskMb": 2048
+  },
+  "ports": [
+    {
+      "name": "Stream",
+      "port": 8000,
+      "protocol": "tcp"
+    }
+  ],
+  "schema": [
+    {
+      "key": "serverName",
+      "label": "Nome da rádio",
+      "type": "text",
+      "default": "Icecast Audio Node",
+      "required": true
+    },
+    {
+      "key": "location",
+      "label": "Localização",
+      "type": "text",
+      "default": "Portugal",
+      "required": false
+    },
+    {
+      "key": "maxPlayers",
+      "label": "Ouvintes máximos",
+      "type": "number",
+      "default": 100,
+      "min": 5,
+      "max": 5000
+    },
+    {
+      "key": "port",
+      "label": "Porta stream",
+      "type": "number",
+      "default": 8000,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "sourcePassword",
+      "label": "Password source",
+      "type": "password",
+      "default": "change-me-source",
+      "required": true
+    },
+    {
+      "key": "adminPassword",
+      "label": "Password admin",
+      "type": "password",
+      "default": "change-me-admin",
+      "required": true
+    },
+    {
+      "key": "mount",
+      "label": "Mount point",
+      "type": "text",
+      "default": "/live",
+      "required": true
+    },
+    {
+      "key": "ramMb",
+      "label": "RAM MB",
+      "type": "number",
+      "default": 512,
+      "min": 256,
+      "max": 8192
+    }
+  ],
+  "status": "available"
+}

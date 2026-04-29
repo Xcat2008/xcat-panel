@@ -1,0 +1,25 @@
+{
+  "id": "sinusbot",
+  "name": "SinusBot Music Bot",
+  "category": "Bot",
+  "icon": "🎵",
+  "description": "Music bot para TeamSpeak com painel web, preparado para ligar a um servidor TS3.",
+  "installer": "sinusbot-ts3",
+  "defaultResources": {
+    "ramMb": 512,
+    "cpuLimit": 50,
+    "diskMb": 2048
+  },
+  "ports": [
+    { "name": "Web", "port": 8087, "protocol": "tcp" }
+  ],
+  "schema": [
+    { "key": "serverName", "label": "Nome do bot", "type": "text", "default": "SinusBot Music Node", "required": true },
+    { "key": "port", "label": "Porta web", "type": "number", "default": 8087, "min": 1024, "max": 65535 },
+    { "key": "ts3Host", "label": "Servidor TeamSpeak", "type": "text", "default": "127.0.0.1", "required": true },
+    { "key": "ts3Port", "label": "Porta TeamSpeak", "type": "number", "default": 9987, "min": 1024, "max": 65535 },
+    { "key": "defaultChannel", "label": "Canal default", "type": "text", "default": "", "required": false },
+    { "key": "ramMb", "label": "RAM MB", "type": "number", "default": 512, "min": 256, "max": 4096 }
+  ],
+  "status": "available"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "satisfactory",
+  "name": "Satisfactory",
+  "category": "Automation",
+  "icon": "🏗️",
+  "description": "Servidor dedicado Satisfactory via SteamCMD para fabricas persistentes e cooperativo.",
+  "installer": "steamcmd-satisfactory",
+  "defaultResources": {
+    "ramMb": 8192,
+    "cpuLimit": 200,
+    "diskMb": 20000
+  },
+  "ports": [
+    { "name": "Game", "port": 7777, "protocol": "udp/tcp" }
+  ],
+  "schema": [
+    { "key": "serverName", "label": "Nome do servidor", "type": "text", "default": "Satisfactory Factory Node", "required": true },
+    { "key": "port", "label": "Porta", "type": "number", "default": 7777, "min": 1024, "max": 65535 },
+    { "key": "ramMb", "label": "RAM MB", "type": "number", "default": 8192, "min": 4096, "max": 65536 }
+  ],
+  "status": "available"
+}

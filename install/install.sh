@@ -77,7 +77,7 @@ create_user_and_dirs() {
     useradd --system --create-home --shell /bin/bash xcatpanel
   fi
 
-  mkdir -p "$APP_DIR/apps/api" "$APP_DIR/apps/web" "$APP_DIR/templates" "$DATA_DIR" "$SERVER_DIR"
+  mkdir -p "$APP_DIR/apps/api" "$APP_DIR/apps/web" "$APP_DIR/templates" "$APP_DIR/catalog" "$DATA_DIR" "$SERVER_DIR"
   chown -R xcatpanel:xcatpanel "$APP_DIR"
 }
 
@@ -103,6 +103,10 @@ copy_bundle() {
 
   if [ -d "$source_root/templates" ]; then
     rsync -a --delete "$source_root/templates/" "$APP_DIR/templates/"
+  fi
+
+  if [ -d "$source_root/catalog" ]; then
+    rsync -a --delete "$source_root/catalog/" "$APP_DIR/catalog/"
   fi
 
   chown -R xcatpanel:xcatpanel "$APP_DIR"

@@ -1,0 +1,61 @@
+{
+  "id": "gmod",
+  "name": "Garry's Mod",
+  "category": "Sandbox",
+  "icon": "🧰",
+  "description": "Servidor Garry's Mod via SteamCMD com mapa, slots e hostname editaveis.",
+  "installer": "steamcmd-gmod",
+  "defaultResources": {
+    "ramMb": 4096,
+    "cpuLimit": 150,
+    "diskMb": 20000
+  },
+  "ports": [
+    {
+      "name": "Game",
+      "port": 27015,
+      "protocol": "udp"
+    }
+  ],
+  "schema": [
+    {
+      "key": "serverName",
+      "label": "Nome do servidor",
+      "type": "text",
+      "default": "Garry's Mod Node",
+      "required": true
+    },
+    {
+      "key": "map",
+      "label": "Mapa",
+      "type": "text",
+      "default": "gm_construct",
+      "required": true
+    },
+    {
+      "key": "maxPlayers",
+      "label": "Slots",
+      "type": "number",
+      "default": 16,
+      "min": 2,
+      "max": 128
+    },
+    {
+      "key": "port",
+      "label": "Porta",
+      "type": "number",
+      "default": 27015,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "ramMb",
+      "label": "RAM MB",
+      "type": "number",
+      "default": 4096,
+      "min": 1024,
+      "max": 32768
+    }
+  ],
+  "status": "available"
+}

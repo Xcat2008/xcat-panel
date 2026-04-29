@@ -1,0 +1,80 @@
+{
+  "id": "minecraft-paper",
+  "name": "Minecraft Paper",
+  "category": "Sandbox",
+  "icon": "⛏️",
+  "description": "Servidor Minecraft Java com PaperMC, configuracao propria e download automatico no primeiro arranque.",
+  "installer": "minecraft-paper",
+  "defaultResources": {
+    "ramMb": 4096,
+    "cpuLimit": 150,
+    "diskMb": 12000
+  },
+  "ports": [
+    {
+      "name": "Game",
+      "port": 25565,
+      "protocol": "tcp"
+    }
+  ],
+  "schema": [
+    {
+      "key": "serverName",
+      "label": "Nome do servidor",
+      "type": "text",
+      "default": "Minecraft Paper Node",
+      "required": true
+    },
+    {
+      "key": "motd",
+      "label": "MOTD",
+      "type": "text",
+      "default": "Servidor Minecraft alojado na GameForge",
+      "required": false
+    },
+    {
+      "key": "maxPlayers",
+      "label": "Slots",
+      "type": "number",
+      "default": 20,
+      "min": 2,
+      "max": 200
+    },
+    {
+      "key": "port",
+      "label": "Porta",
+      "type": "number",
+      "default": 25565,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "worldName",
+      "label": "Mundo",
+      "type": "text",
+      "default": "world",
+      "required": true
+    },
+    {
+      "key": "difficulty",
+      "label": "Dificuldade",
+      "type": "select",
+      "default": "normal",
+      "options": [
+        { "label": "Peaceful", "value": "peaceful" },
+        { "label": "Easy", "value": "easy" },
+        { "label": "Normal", "value": "normal" },
+        { "label": "Hard", "value": "hard" }
+      ]
+    },
+    {
+      "key": "ramMb",
+      "label": "RAM MB",
+      "type": "number",
+      "default": 4096,
+      "min": 1024,
+      "max": 32768
+    }
+  ],
+  "status": "available"
+}

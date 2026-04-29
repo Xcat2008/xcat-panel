@@ -1,0 +1,79 @@
+{
+  "id": "mumble",
+  "name": "Mumble Voice",
+  "category": "Voice",
+  "icon": "🎙️",
+  "description": "Servidor de voz leve e privado, ideal para comunidades, clans e canais permanentes.",
+  "installer": "voice-mumble",
+  "defaultResources": {
+    "ramMb": 512,
+    "cpuLimit": 50,
+    "diskMb": 2048
+  },
+  "ports": [
+    {
+      "name": "Voice",
+      "port": 64738,
+      "protocol": "tcp/udp"
+    }
+  ],
+  "schema": [
+    {
+      "key": "serverName",
+      "label": "Nome do servidor",
+      "type": "text",
+      "default": "Mumble Voice Node",
+      "required": true
+    },
+    {
+      "key": "welcomeText",
+      "label": "Mensagem de entrada",
+      "type": "text",
+      "default": "Bem-vindo ao servidor de voz.",
+      "required": false
+    },
+    {
+      "key": "maxPlayers",
+      "label": "Slots",
+      "type": "number",
+      "default": 32,
+      "min": 2,
+      "max": 500
+    },
+    {
+      "key": "port",
+      "label": "Porta",
+      "type": "number",
+      "default": 64738,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "serverPassword",
+      "label": "Password do servidor",
+      "type": "password",
+      "default": "",
+      "required": false
+    },
+    {
+      "key": "bandwidth",
+      "label": "Qualidade áudio",
+      "type": "select",
+      "default": "72000",
+      "options": [
+        { "label": "Normal", "value": "48000" },
+        { "label": "Alta", "value": "72000" },
+        { "label": "Máxima", "value": "128000" }
+      ]
+    },
+    {
+      "key": "ramMb",
+      "label": "RAM MB",
+      "type": "number",
+      "default": 512,
+      "min": 256,
+      "max": 8192
+    }
+  ],
+  "status": "available"
+}

@@ -51,6 +51,7 @@ Este instalador ainda esta em fase inicial. Ja prepara painel, API, Nginx, PM2 e
 ```text
 apps/api     API Node.js
 apps/web     Frontend React
+catalog      Servicos disponiveis no catalogo
 install      Instalador automatico
 templates    Templates de jogos/voz/audio
 docs         Notas tecnicas e roadmap

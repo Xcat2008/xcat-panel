@@ -1,0 +1,29 @@
+{
+  "id": "ark-se",
+  "name": "ARK Survival Evolved",
+  "category": "Survival",
+  "icon": "🦖",
+  "description": "Servidor ARK dedicado via SteamCMD com mapa, password admin, query e RCON.",
+  "installer": "steamcmd-ark-se",
+  "defaultResources": {
+    "ramMb": 12288,
+    "cpuLimit": 250,
+    "diskMb": 80000
+  },
+  "ports": [
+    { "name": "Game", "port": 7777, "protocol": "udp" },
+    { "name": "Query", "port": 27015, "protocol": "udp" },
+    { "name": "RCON", "port": 32330, "protocol": "tcp" }
+  ],
+  "schema": [
+    { "key": "serverName", "label": "Nome do servidor", "type": "text", "default": "ARK Survival Node", "required": true },
+    { "key": "map", "label": "Mapa", "type": "text", "default": "TheIsland", "required": true },
+    { "key": "port", "label": "Porta jogo", "type": "number", "default": 7777, "min": 1024, "max": 65535 },
+    { "key": "queryPort", "label": "Porta query", "type": "number", "default": 27015, "min": 1024, "max": 65535 },
+    { "key": "rconPort", "label": "Porta RCON", "type": "number", "default": 32330, "min": 1024, "max": 65535 },
+    { "key": "serverPassword", "label": "Password servidor", "type": "password", "default": "", "required": false },
+    { "key": "adminPassword", "label": "Password admin", "type": "password", "default": "", "required": false },
+    { "key": "ramMb", "label": "RAM MB", "type": "number", "default": 12288, "min": 8192, "max": 65536 }
+  ],
+  "status": "available"
+}

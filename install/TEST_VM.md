@@ -16,7 +16,7 @@ Este instalador ainda e uma primeira versao tecnica, boa para testar numa VM. Na
 Na pasta deste projeto, cria um pacote:
 
 ```powershell
-Compress-Archive -Path apps,install,templates,docs,README.md -DestinationPath xcat-panel-test.zip -Force
+Compress-Archive -Path apps,catalog,install,templates,docs,README.md -DestinationPath xcat-panel-test.zip -Force
 ```
 
 Depois envia para a VM. Exemplo:

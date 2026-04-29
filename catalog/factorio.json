@@ -1,0 +1,81 @@
+{
+  "id": "factorio",
+  "name": "Factorio",
+  "category": "Automation",
+  "icon": "🏭",
+  "description": "Servidor Factorio headless com save automatico, password opcional e RCON configuravel.",
+  "installer": "factorio-headless",
+  "defaultResources": {
+    "ramMb": 2048,
+    "cpuLimit": 100,
+    "diskMb": 4096
+  },
+  "ports": [
+    {
+      "name": "Game",
+      "port": 34197,
+      "protocol": "udp"
+    },
+    {
+      "name": "RCON",
+      "port": 27015,
+      "protocol": "tcp"
+    }
+  ],
+  "schema": [
+    {
+      "key": "serverName",
+      "label": "Nome do servidor",
+      "type": "text",
+      "default": "Factorio Factory Node",
+      "required": true
+    },
+    {
+      "key": "maxPlayers",
+      "label": "Slots",
+      "type": "number",
+      "default": 16,
+      "min": 1,
+      "max": 100
+    },
+    {
+      "key": "port",
+      "label": "Porta jogo",
+      "type": "number",
+      "default": 34197,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "rconPort",
+      "label": "Porta RCON",
+      "type": "number",
+      "default": 27015,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "rconPassword",
+      "label": "Password RCON",
+      "type": "password",
+      "default": "",
+      "required": false
+    },
+    {
+      "key": "serverPassword",
+      "label": "Password do servidor",
+      "type": "password",
+      "default": "",
+      "required": false
+    },
+    {
+      "key": "ramMb",
+      "label": "RAM MB",
+      "type": "number",
+      "default": 2048,
+      "min": 1024,
+      "max": 16384
+    }
+  ],
+  "status": "available"
+}

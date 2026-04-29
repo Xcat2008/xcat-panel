@@ -1,0 +1,90 @@
+{
+  "id": "rust",
+  "name": "Rust",
+  "category": "Survival",
+  "icon": "☢️",
+  "description": "Servidor Rust dedicado com SteamCMD, identidade isolada, RCON e parametros editaveis.",
+  "installer": "steamcmd-rust",
+  "defaultResources": {
+    "ramMb": 12288,
+    "cpuLimit": 250,
+    "diskMb": 50000
+  },
+  "ports": [
+    {
+      "name": "Game",
+      "port": 28015,
+      "protocol": "udp"
+    },
+    {
+      "name": "RCON",
+      "port": 28017,
+      "protocol": "tcp"
+    }
+  ],
+  "schema": [
+    {
+      "key": "serverName",
+      "label": "Nome do servidor",
+      "type": "text",
+      "default": "Rust Survival Node",
+      "required": true
+    },
+    {
+      "key": "maxPlayers",
+      "label": "Slots",
+      "type": "number",
+      "default": 50,
+      "min": 2,
+      "max": 300
+    },
+    {
+      "key": "port",
+      "label": "Porta jogo",
+      "type": "number",
+      "default": 28015,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "rconPort",
+      "label": "Porta RCON",
+      "type": "number",
+      "default": 28017,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "rconPassword",
+      "label": "Password RCON",
+      "type": "password",
+      "default": "",
+      "required": false
+    },
+    {
+      "key": "worldSize",
+      "label": "Tamanho do mapa",
+      "type": "number",
+      "default": 3500,
+      "min": 1000,
+      "max": 6000
+    },
+    {
+      "key": "seed",
+      "label": "Seed",
+      "type": "number",
+      "default": 12345,
+      "min": 1,
+      "max": 2147483647
+    },
+    {
+      "key": "ramMb",
+      "label": "RAM MB",
+      "type": "number",
+      "default": 12288,
+      "min": 8192,
+      "max": 65536
+    }
+  ],
+  "status": "available"
+}

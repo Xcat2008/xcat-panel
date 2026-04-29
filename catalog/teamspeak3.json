@@ -1,0 +1,87 @@
+{
+  "id": "teamspeak3",
+  "name": "TeamSpeak 3",
+  "category": "Voice",
+  "icon": "🎧",
+  "description": "Servidor TeamSpeak para comunidades que precisam de permissões, canais e voz estável.",
+  "installer": "voice-teamspeak3",
+  "defaultResources": {
+    "ramMb": 1024,
+    "cpuLimit": 75,
+    "diskMb": 4096
+  },
+  "ports": [
+    {
+      "name": "Voice",
+      "port": 9987,
+      "protocol": "udp"
+    },
+    {
+      "name": "Query",
+      "port": 10011,
+      "protocol": "tcp"
+    },
+    {
+      "name": "File Transfer",
+      "port": 30033,
+      "protocol": "tcp"
+    }
+  ],
+  "schema": [
+    {
+      "key": "serverName",
+      "label": "Nome do servidor",
+      "type": "text",
+      "default": "TeamSpeak Voice Node",
+      "required": true
+    },
+    {
+      "key": "maxPlayers",
+      "label": "Slots",
+      "type": "number",
+      "default": 32,
+      "min": 2,
+      "max": 1024
+    },
+    {
+      "key": "port",
+      "label": "Porta voz",
+      "type": "number",
+      "default": 9987,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "queryPort",
+      "label": "Porta query",
+      "type": "number",
+      "default": 10011,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "filePort",
+      "label": "Porta ficheiros",
+      "type": "number",
+      "default": 30033,
+      "min": 1024,
+      "max": 65535
+    },
+    {
+      "key": "serverPassword",
+      "label": "Password do servidor",
+      "type": "password",
+      "default": "",
+      "required": false
+    },
+    {
+      "key": "ramMb",
+      "label": "RAM MB",
+      "type": "number",
+      "default": 1024,
+      "min": 512,
+      "max": 8192
+    }
+  ],
+  "status": "available"
+}
