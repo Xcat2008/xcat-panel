@@ -3,16 +3,30 @@ import path from 'path';
 
 const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
 const CS2_LIBRARY_PATH = path.join(ROOT, 'library', 'games', 'cs2', 'steamcmd', 'latest');
+const CS2_APP_ID = '730';
+
+async function pathExists(targetPath) {
+  try {
+    await fs.access(targetPath);
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 export async function installCS2Server(server, installConfig = {}) {
   const filesDir = path.join(server.path, 'files');
-
-  await fs.access(CS2_LIBRARY_PATH);
+  const gameDir = path.join(filesDir, 'game');
+  const hasSharedLibrary = await pathExists(CS2_LIBRARY_PATH);
 
   await fs.rm(filesDir, { recursive: true, force: true });
   await fs.mkdir(filesDir, { recursive: true });
 
-  await fs.symlink(CS2_LIBRARY_PATH, path.join(filesDir, 'game'));
+  if (hasSharedLibrary) {
+    await fs.symlink(CS2_LIBRARY_PATH, gameDir, 'dir');
+  } else {
+    await fs.mkdir(gameDir, { recursive: true });
+  }
 
   const startScript = `#!/usr/bin/env bash
 set -euo pipefail
@@ -20,9 +34,46 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 LOG_FILE="./server.log"
+SHARED_GAME_ROOT="${CS2_LIBRARY_PATH}"
+CS2_APP_ID="${CS2_APP_ID}"
+
+ensure_game_files() {
+  if [ -x "./game/game/bin/linuxsteamrt64/cs2" ]; then
+    return 0
+  fi
+
+  if [ -x "$SHARED_GAME_ROOT/game/bin/linuxsteamrt64/cs2" ]; then
+    rm -rf ./game
+    ln -s "$SHARED_GAME_ROOT" ./game
+    return 0
+  fi
+
+  if ! command -v steamcmd >/dev/null 2>&1; then
+    echo "[ERROR] SteamCMD nao esta instalado. Instala steamcmd ou cria a biblioteca em $SHARED_GAME_ROOT." >> "$LOG_FILE"
+    exit 127
+  fi
+
+  mkdir -p ./game
+  echo "[INSTALL] Biblioteca CS2 em falta. A descarregar app $CS2_APP_ID para $(readlink -f ./game)..." >> "$LOG_FILE"
+  steamcmd +force_install_dir "$(readlink -f ./game)" +login anonymous +app_update "$CS2_APP_ID" validate +quit >> "$LOG_FILE" 2>&1
+
+  if [ ! -x "./game/game/bin/linuxsteamrt64/cs2" ]; then
+    echo "[ERROR] SteamCMD terminou, mas o binario CS2 nao foi encontrado." >> "$LOG_FILE"
+    exit 127
+  fi
+}
+
+ensure_game_files
+
 GAME_ROOT="$(readlink -f ./game)"
 SERVER_ROOT="$(readlink -f ..)"
 RUNTIME_FILE="$SERVER_ROOT/runtime.json"
+GENERATED_CFG="$SERVER_ROOT/overlay/upper/csgo/cfg/server.cfg"
+
+if [ -f "$GENERATED_CFG" ]; then
+  mkdir -p "$GAME_ROOT/game/csgo/cfg"
+  cp "$GENERATED_CFG" "$GAME_ROOT/game/csgo/cfg/server.cfg"
+fi
 
 read_runtime_value() {
   local key="$1"
@@ -75,8 +126,9 @@ done
 
   await fs.writeFile(path.join(filesDir, 'GAMEFORGE-CS2-INSTALL.json'), JSON.stringify({
     game: 'cs2',
-    type: 'symlink',
+    type: hasSharedLibrary ? 'symlink' : 'local-steamcmd',
     library: CS2_LIBRARY_PATH,
+    steamAppId: CS2_APP_ID,
     binary: 'game/bin/linuxsteamrt64/cs2',
     installedAt: new Date().toISOString(),
     dynamicRuntime: true,

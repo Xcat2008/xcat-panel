@@ -55,7 +55,7 @@ async function appendLog(serverPath, message) {
 async function applyGameConfigIfSupported(server, reason = 'runtime') {
   if (!server || server.game !== 'cs2') return null;
 
-  const result = await applyConfig(server.id);
+  const result = await applyConfig(server.id, server.path);
   const runtime = await writeCs2Runtime(server);
 
   await appendLog(server.path, `Configuração CS2 aplicada automaticamente (${reason}): ${result.path}`);

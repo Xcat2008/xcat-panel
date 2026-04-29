@@ -29,17 +29,18 @@ O painel deve ficar dividido em 4 camadas:
    - guarda logs por tarefa
    - mostra estado em direto no painel
 
-## Melhor que OpenGamePanel
+## Porque escolher Xcat Panel
 
-- Instalador guiado com dominio, HTTPS, admin inicial e disco de dados.
-- Templates com imagens, requisitos e configs editaveis.
+- Instalador simples para levantar o painel numa maquina Ubuntu fresca.
+- Identidade visual propria, pensada para comunidades privadas e pequenos hosts.
+- Templates com imagens, requisitos e configuracoes editaveis.
 - Progresso real de instalacao/start/update no painel.
 - Separacao clara entre painel e servidores.
 - Multi-destino: SSD para painel, HDD/SSD grande para servidores.
 - Cada servidor com dono, portas e pasta propria.
 - Export/import de configuracao para migrar para outra maquina.
 - Verificacoes antes de instalar: RAM, disco livre, portas ocupadas, dependencias.
-- Reparacao automatica: botao "Diagnosticar" por servidor.
+- Reparacao assistida com diagnostico por servidor.
 
 ## Instalador base
 
@@ -180,4 +181,3 @@ Fase 3:
 - Export/import do painel.
 - Instalador offline em ficheiro `.tar.gz`.
 - Atualizador do proprio painel.
-

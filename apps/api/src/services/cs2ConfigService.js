@@ -2,8 +2,9 @@ import fs from 'fs/promises';
 import path from 'path';
 import { readJson, writeJson } from '../utils/jsonStore.js';
 
-const CONFIG_DB_PATH = '/opt/xcat-panel/apps/api/data/cs2-configs.json';
-const SERVERS_ROOT = '/opt/xcat-panel/servers';
+const ROOT = process.env.GAMEFORGE_ROOT || '/opt/xcat-panel';
+const CONFIG_DB_PATH = path.join(ROOT, 'apps', 'api', 'data', 'cs2-configs.json');
+const SERVERS_ROOT = path.join(ROOT, 'servers');
 
 export const DEFAULT_CS2_CONFIG = {
   hostname: 'GameForge CS2 Server',
@@ -79,8 +80,8 @@ export function normalizeConfig(input = {}) {
   };
 }
 
-function getServerCfgPath(serverId) {
-  return path.join(SERVERS_ROOT, serverId, 'overlay/upper/csgo/cfg/server.cfg');
+function getServerCfgPath(serverId, serverPath = null) {
+  return path.join(serverPath || path.join(SERVERS_ROOT, serverId), 'overlay/upper/csgo/cfg/server.cfg');
 }
 
 export function renderServerCfg(config) {
@@ -170,9 +171,9 @@ export async function saveConfig(serverId, inputConfig) {
   return db[serverId];
 }
 
-export async function applyConfig(serverId) {
+export async function applyConfig(serverId, serverPath = null) {
   const saved = await getConfig(serverId);
-  const cfgPath = getServerCfgPath(serverId);
+  const cfgPath = getServerCfgPath(serverId, serverPath);
 
   await fs.mkdir(path.dirname(cfgPath), { recursive: true });
   await fs.writeFile(cfgPath, renderServerCfg(saved.config), 'utf8');

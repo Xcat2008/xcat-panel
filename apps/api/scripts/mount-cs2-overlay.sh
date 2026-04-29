@@ -2,9 +2,11 @@
 set -e
 
 SERVER_ID="$1"
+SERVER_PATH="${2:-}"
 
-BASE="/opt/gameforge/library/games/cs2/steamcmd/latest/game"
-SERVER="/opt/gameforge/servers/$SERVER_ID"
+ROOT="${GAMEFORGE_ROOT:-/opt/xcat-panel}"
+BASE="$ROOT/library/games/cs2/steamcmd/latest"
+SERVER="${SERVER_PATH:-$ROOT/servers/$SERVER_ID}"
 
 UPPER="$SERVER/overlay/upper"
 WORK="$SERVER/overlay/work"
@@ -16,6 +18,11 @@ if [ -z "$SERVER_ID" ]; then
 fi
 
 echo ">> Preparar overlay para $SERVER_ID"
+
+if [ ! -d "$BASE" ]; then
+  echo ">> Biblioteca CS2 global nao encontrada em $BASE. Overlay ignorado; o start.sh pode instalar o jogo localmente."
+  exit 0
+fi
 
 mkdir -p "$UPPER"
 mkdir -p "$WORK"
@@ -33,7 +40,7 @@ mount -t overlay overlay \
   -o lowerdir="$BASE",upperdir="$UPPER",workdir="$WORK" \
   "$MERGED"
 
-mkdir -p "$MERGED/csgo/addons"
-mkdir -p "$MERGED/csgo/cfg"
+mkdir -p "$MERGED/game/csgo/addons"
+mkdir -p "$MERGED/game/csgo/cfg"
 
 echo ">> Overlay montado com sucesso"

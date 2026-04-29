@@ -13,7 +13,11 @@ export async function ensureCs2OverlayMounted(server) {
 
   await fs.access(MOUNT_SCRIPT);
 
-  const { stdout, stderr } = await execFileAsync('bash', [MOUNT_SCRIPT, server.id], {
+  const { stdout, stderr } = await execFileAsync('bash', [MOUNT_SCRIPT, server.id, server.path], {
+    env: {
+      ...process.env,
+      GAMEFORGE_ROOT: process.env.GAMEFORGE_ROOT || '/opt/xcat-panel'
+    },
     timeout: 120000,
     maxBuffer: 1024 * 1024
   });

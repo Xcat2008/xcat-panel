@@ -2,6 +2,13 @@
 
 Painel privado para alojamento e gestao de servidores de jogos, voz e audio.
 
+## Porque escolher Xcat Panel
+
+- Feito para comunidades que querem um painel proprio, direto e com identidade visual forte.
+- Junta jogos, voz, audio, ficheiros, consola e operacoes live no mesmo sitio.
+- Permite servidores com dono, portas e pastas isoladas.
+- Pensado para instalacao simples em Ubuntu e para crescer com discos adicionais.
+
 ## Instalacao rapida numa VM Ubuntu
 
 Num Ubuntu fresco, executa:
